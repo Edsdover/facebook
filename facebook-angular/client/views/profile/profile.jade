@@ -1,0 +1,38 @@
+h2 Profile
+.row
+  .col-xs-4.col-xs-offset-1
+    form
+      .form-group
+        label(for='name') Name
+        input.form-control#name(type='text', ng-model='user.name')
+      .form-group
+        label(for='age') Age
+        input.form-control#age(type='number', ng-model='user.age')
+      .form-group
+        label(for='birthday') Birthday
+        input.form-control#birthday(type='date', ng-model='user.birthday')
+      .form-group
+        label(for='email') Email
+        input.form-control#email(type='email', ng-model='user.email')
+      .form-group
+        label(for='gender') Gender
+        select.form-control#gender(ng-model='user.gender')
+          option Male
+          option Female
+      .form-group
+        label(for='photo') Address
+        textarea.form-control#address(type='textarea', name='address', ng-model='user.address')
+      .form-group
+        label(for='avatar') Avatar Upload
+        input.form-control#avatar(type='url', name='photo', ng-model='user.avatar', placeholder='Enter web URL here!')
+        img#previewPic
+  .col-xs-4.col-xs-offset-1
+    form
+      .form-group
+        button.webButton.btn.btn-info(ng-click='camOn()', ng-hide='webcamOn') Webcam On
+        button.webButton.btn.btn-danger(ng-click='camOff()', ng-show='webcamOn') Webcam Off
+        #camera
+        button.webButton.btn.btn-primary(ng-click='takeSnapshot()', ng-show='webcamOn') Take Snapshot
+        img#photo(ng-src='{{user.photo}}')
+      .form-group
+      button.btn.form-control.btn-success(type='submit', ng-click='save(user)') Save Profile

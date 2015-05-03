@@ -2,7 +2,7 @@
 
 var Hapi = require('hapi');
 var Mongoose = require('mongoose');
-var Blipp = require('Blipp');
+var Blipp = require('blipp');
 var Plugins = require('./tools/plunge');
 var ServerConfig = require('./config/server.json');
 
@@ -16,6 +16,9 @@ exports.init = function(port, cb){
     Plugins.push(Blipp);
     server.register(Plugins, function(err){
       if(err){return cb(err);}
+
+
+      server.auth.strategy('token', 'jwt', true, server.plugins.authentication.authenticate);
 
       server.start(function(err){
         return cb(err, server);
